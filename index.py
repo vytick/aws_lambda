@@ -8,7 +8,8 @@ class PostgreSQL():
 		self.conn_string = sett['string']
 		self.conn = psycopg2.connect(self.conn_string)
 		self.cursor = self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
+        print "haha"
+        
 	def __del__(self):
 		self.conn.close()
 
@@ -19,7 +20,7 @@ db = PostgreSQL({
 
 
 def getComments(transaction_id):
-	db.cursor.execute("SELECT * FROM comments WHERE id = ", (str(transaction_id)) 
+	db.cursor.execute("SELECT * FROM comments WHERE id = ", (str(transaction_id))
 	return db.cursor.fetchall()
 
 
@@ -38,6 +39,3 @@ def add_comment_handler(event, context):
 
 
 	return json.dumps(response)
-
-	
-
